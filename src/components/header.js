@@ -22,8 +22,6 @@ const Header = ({ siteTitle }) => {
     }
   `);
 
-  console.log(nodes);
-
   return (
     <header
       style={{
