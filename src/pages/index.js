@@ -20,5 +20,3 @@ const IndexPage = () => (
 );
 
 export default IndexPage;
-
-var x = "10";

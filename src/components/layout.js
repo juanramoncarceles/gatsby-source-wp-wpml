@@ -13,11 +13,17 @@ import Header from "./header";
 import "./layout.css";
 
 const Layout = ({ children }) => {
-  const data = useStaticQuery(graphql`
+  const {
+    allWp: {
+      nodes: [settings],
+    },
+  } = useStaticQuery(graphql`
     query SiteTitleQuery {
-      site {
-        siteMetadata {
-          title
+      allWp {
+        nodes {
+          generalSettings {
+            title
+          }
         }
       }
     }
@@ -25,7 +31,7 @@ const Layout = ({ children }) => {
 
   return (
     <>
-      <Header siteTitle={data.site.siteMetadata?.title || `Title`} />
+      <Header siteTitle={settings.generalSettings.title || `Title`} />
       <div
         style={{
           margin: `0 auto`,

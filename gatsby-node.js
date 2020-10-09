@@ -1,8 +1,8 @@
-const path = require(`path`)
-const { slash } = require(`gatsby-core-utils`)
+const path = require(`path`);
+const { slash } = require(`gatsby-core-utils`);
 
 exports.createPages = async ({ graphql, actions }) => {
-  const { createPage } = actions
+  const { createPage } = actions;
 
   // Query content for WordPress posts.
   const {
@@ -20,14 +20,14 @@ exports.createPages = async ({ graphql, actions }) => {
         }
       }
     }
-  `)
+  `);
 
-  const postTemplate = path.resolve(`./src/templates/post.js`)
+  const postTemplate = path.resolve(`./src/templates/post.js`);
 
-  allPosts.forEach(post => {
+  allPosts.forEach((post) => {
     createPage({
       // Will be the url for the page.
-      path: post.uri,
+      path: `/blog${post.uri}`, // post.uri,
       // specify the component template of your choice
       component: slash(postTemplate),
       // In the ^template's GraphQL query, 'id' will be available
@@ -35,9 +35,8 @@ exports.createPages = async ({ graphql, actions }) => {
       context: {
         id: post.id,
         title: post.title,
-        content: post.content
+        content: post.content,
       },
-    })
-  })
-}
-
+    });
+  });
+};
