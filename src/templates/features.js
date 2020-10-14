@@ -1,5 +1,6 @@
 import React from "react";
 import { graphql } from "gatsby";
+import Img from "gatsby-image";
 
 import Layout from "../components/layout";
 
@@ -18,7 +19,7 @@ const Features = ({
           <h2>{feature.title}</h2>
           <p>{feature.summary}</p>
           <p>{feature.description}</p>
-          <img src={feature.image.uri} />
+          <Img fluid={feature.image.localFile.childImageSharp.fluid} alt="" />
         </div>
       );
     }
@@ -43,7 +44,13 @@ export const query = graphql`
           summary
           description
           image {
-            uri
+            localFile {
+              childImageSharp {
+                fluid {
+                  ...GatsbyImageSharpFluid_withWebp
+                }
+              }
+            }
           }
         }
         feature2 {
@@ -51,7 +58,13 @@ export const query = graphql`
           summary
           description
           image {
-            uri
+            localFile {
+              childImageSharp {
+                fluid {
+                  ...GatsbyImageSharpFluid_withWebp
+                }
+              }
+            }
           }
         }
         feature3 {
@@ -59,7 +72,13 @@ export const query = graphql`
           summary
           description
           image {
-            uri
+            localFile {
+              childImageSharp {
+                fluid {
+                  ...GatsbyImageSharpFluid_withWebp
+                }
+              }
+            }
           }
         }
       }
