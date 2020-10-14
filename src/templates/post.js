@@ -4,6 +4,7 @@ import Layout from "../components/layout";
 import SEO from "../components/seo";
 
 export default function Post({ pageContext }) {
+  // TODO: Use data instead ?
   return (
     <Layout>
       <SEO title="Home" />
