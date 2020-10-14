@@ -1,6 +1,21 @@
 const path = require(`path`);
 const { slash } = require(`gatsby-core-utils`);
 
+const languages = [
+  {
+    path: "/",
+    code: "en_US",
+  },
+  {
+    path: "/es/",
+    code: "es_ES",
+  },
+  {
+    path: "/it/",
+    code: "it_IT",
+  },
+];
+
 exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions;
 
@@ -36,6 +51,30 @@ exports.createPages = async ({ graphql, actions }) => {
         id: post.id,
         title: post.title,
         content: post.content,
+      },
+    });
+  });
+
+  const aboutTemplate = path.resolve("./src/templates/about.js");
+
+  languages.forEach((lang) => {
+    createPage({
+      path: `${lang.path}about`,
+      component: slash(aboutTemplate),
+      context: {
+        lang: lang.code,
+      },
+    });
+  });
+
+  const featuresTemplate = path.resolve("./src/templates/features.js");
+
+  languages.forEach((lang) => {
+    createPage({
+      path: `${lang.path}features`,
+      component: slash(featuresTemplate),
+      context: {
+        lang: lang.code,
       },
     });
   });
