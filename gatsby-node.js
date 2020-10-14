@@ -41,12 +41,8 @@ exports.createPages = async ({ graphql, actions }) => {
 
   allPosts.forEach((post) => {
     createPage({
-      // Will be the url for the page.
-      path: `/blog${post.uri}`, // post.uri,
-      // specify the component template of your choice
+      path: `/blog${post.uri}`,
       component: slash(postTemplate),
-      // In the ^template's GraphQL query, 'id' will be available
-      // as a GraphQL variable to query for this post's data.
       context: {
         id: post.id,
         title: post.title,
