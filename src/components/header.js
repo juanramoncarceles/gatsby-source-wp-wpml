@@ -1,33 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Link, useStaticQuery, graphql } from "gatsby";
+import { Link } from "gatsby";
+
+import Menu from "./menu";
 
 const Header = ({ siteTitle, lang }) => {
-  // Since static query cannot use variables in Gatsby (at least for now),
-  // I query all the languages and the render them based on a prop.
-  const {
-    allWordpressMenuLocation: {
-      nodes,
-    },
-  } = useStaticQuery(graphql`
-    query {
-      allWordpressMenuLocation(filter: {slug: {eq: "primary"}}) {
-        nodes {
-          menuData {
-            items {
-              title
-              url
-              ID
-            }
-          }
-          language
-        }
-      }
-    }    
-  `);
-
-  // Returns the menu data for the provided language.
-  const menuDataByLanguage = (lang) => nodes.find(n => n.language === lang.substring(0,2)).menuData.items;
 
   return (
     <header
@@ -54,11 +31,7 @@ const Header = ({ siteTitle, lang }) => {
             {siteTitle}
           </Link>
         </h1>
-        {menuDataByLanguage(lang).map((item) => (
-          <Link to={item.url} key={item.ID}>
-            {item.title}
-          </Link>
-        ))}
+        <Menu lang={lang} />
       </div>
     </header>
   );
@@ -71,7 +44,7 @@ Header.propTypes = {
 
 Header.defaultProps = {
   siteTitle: ``,
-  lang: `en`
+  lang: ``,
 };
 
 export default Header;
