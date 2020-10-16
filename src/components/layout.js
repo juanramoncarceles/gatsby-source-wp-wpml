@@ -27,8 +27,8 @@ const Layout = ({ children, seoTitle, seoDescription, seoLang }) => {
 
   return (
     <>
-      <SEO pageTitle={seoTitle} description={seoDescription} lang={seoLang} siteTitle={settings.generalSettings.title} />
-      <Header siteTitle={settings.generalSettings.title || `Title`} />
+      <SEO pageTitle={seoTitle} description={seoDescription} langCode={seoLang} siteTitle={settings.generalSettings.title} />
+      <Header siteTitle={settings.generalSettings.title || `Title`} lang={seoLang} />
       <div
         style={{
           margin: `0 auto`,
@@ -53,6 +53,9 @@ const Layout = ({ children, seoTitle, seoDescription, seoLang }) => {
 
 Layout.propTypes = {
   children: PropTypes.node.isRequired,
+  seoTitle: PropTypes.string,
+  seoDescription: PropTypes.string,
+  seoLang: PropTypes.string,
 };
 
 export default Layout;

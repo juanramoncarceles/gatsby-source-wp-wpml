@@ -2,25 +2,32 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Link, useStaticQuery, graphql } from "gatsby";
 
-const Header = ({ siteTitle }) => {
-  // Consider getting the menu id dynamically from context.
+const Header = ({ siteTitle, lang }) => {
+  // Since static query cannot use variables in Gatsby (at least for now),
+  // I query all the languages and the render them based on a prop.
   const {
-    wpMenu: {
-      menuItems: { nodes },
+    allWordpressMenuLocation: {
+      nodes,
     },
   } = useStaticQuery(graphql`
-    query MainMenuQuery {
-      wpMenu(id: { eq: "dGVybToy" }) {
-        menuItems {
-          nodes {
-            path
-            label
-            id
+    query {
+      allWordpressMenuLocation(filter: {slug: {eq: "primary"}}) {
+        nodes {
+          menuData {
+            items {
+              title
+              url
+              ID
+            }
           }
+          language
         }
       }
-    }
+    }    
   `);
+
+  // Returns the menu data for the provided language.
+  const menuDataByLanguage = (lang) => nodes.find(n => n.language === lang.substring(0,2)).menuData.items;
 
   return (
     <header
@@ -47,9 +54,9 @@ const Header = ({ siteTitle }) => {
             {siteTitle}
           </Link>
         </h1>
-        {nodes.map((node) => (
-          <Link to={node.path} key={node.id}>
-            {node.label}
+        {menuDataByLanguage(lang).map((item) => (
+          <Link to={item.url} key={item.ID}>
+            {item.title}
           </Link>
         ))}
       </div>
@@ -59,10 +66,12 @@ const Header = ({ siteTitle }) => {
 
 Header.propTypes = {
   siteTitle: PropTypes.string,
+  lang: PropTypes.string,
 };
 
 Header.defaultProps = {
   siteTitle: ``,
+  lang: `en`
 };
 
 export default Header;

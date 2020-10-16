@@ -69,6 +69,16 @@ module.exports = {
         },
       },
     },
+    {
+      resolve: "gatsby-source-wordpress-menus",
+      options: {
+        wordpressUrl: process.env.WP_URL,
+        languages: ["en", "es", "it"],
+        enableWpml: true,
+        allowCache: true,
+        maxCacheDurationSeconds: 60 * 60 * 24
+      },
+    },
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,

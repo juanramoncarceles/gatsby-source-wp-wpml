@@ -3,7 +3,8 @@ import PropTypes from "prop-types";
 import { Helmet } from "react-helmet";
 import { useStaticQuery, graphql } from "gatsby";
 
-const SEO = ({ description, lang, meta, pageTitle, siteTitle }) => {
+const SEO = ({ description, langCode, meta, pageTitle, siteTitle }) => {
+  // This could be used as a fallback in case no props are provided.
   // const { site } = useStaticQuery(
   //   graphql`
   //     query {
@@ -17,9 +18,13 @@ const SEO = ({ description, lang, meta, pageTitle, siteTitle }) => {
   //     }
   //   `
   // );
-  //console.log("SEO site data: ", site);
-  const metaDescription = description; // || site.siteMetadata.description;
-  //const defaultTitle = site.siteMetadata?.title;
+
+  const metaDescription = description;
+
+  // With this approach even if the string has the country code it is ignored.
+  // Another option would be replace '_' for '-' since the codes come from WPML
+  // like 'es_ES' and in HTML they should be 'es-ES'.
+  const lang = langCode.substring(0,2);
 
   return (
     <Helmet
@@ -67,7 +72,7 @@ const SEO = ({ description, lang, meta, pageTitle, siteTitle }) => {
 }
 
 SEO.defaultProps = {
-  lang: `en`,
+  langCode: `en`,
   description: ``,
   meta: [],
 };
@@ -75,7 +80,7 @@ SEO.defaultProps = {
 SEO.propTypes = {
   siteTitle: PropTypes.string,
   pageTitle: PropTypes.string.isRequired,
-  lang: PropTypes.string,
+  langCode: PropTypes.string,
   description: PropTypes.string,
   meta: PropTypes.arrayOf(PropTypes.object),
 };

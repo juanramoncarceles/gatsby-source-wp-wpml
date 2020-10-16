@@ -11,7 +11,10 @@ const Features = ({
       seo,
       featuresData
     }
-  }
+  },
+  pageContext: {
+    lang,
+  },
 }) => {
   const renderFeatures = (data) => {
     const features = [];
@@ -27,9 +30,9 @@ const Features = ({
     }
     return features;
   };
-
+  //console.log("Features context", pageContext);
   return (
-  <Layout seoTitle={title} seoDescription={seo.metaDesc}>
+  <Layout seoTitle={title} seoDescription={seo.metaDesc} seoLang={lang}>
     {renderFeatures(featuresData)}
   </Layout>
 );}
