@@ -10,8 +10,8 @@ const About = ({
   },
 }) => {
   return (
-    <Layout>
-      <SEO title={title} />
+    <Layout seoTitle={title}>
+      {/* <SEO title={title} /> */}
       <div dangerouslySetInnerHTML={{ __html: content }} />
       <Link to="/about/">English</Link>
       <Link to="/es/about/">Spanish</Link>

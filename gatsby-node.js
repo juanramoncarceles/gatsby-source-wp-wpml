@@ -74,4 +74,17 @@ exports.createPages = async ({ graphql, actions }) => {
       },
     });
   });
+
+  const buyTemplate = path.resolve("./src/templates/buy.js");
+  
+  languages.forEach((lang) => {
+    createPage({
+      path: `${lang.path}buy`,
+      component: slash(buyTemplate),
+      context: {
+        lang: lang.code,
+      },
+    });
+  });
+
 };

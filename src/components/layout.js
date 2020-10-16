@@ -3,9 +3,10 @@ import PropTypes from "prop-types";
 import { useStaticQuery, graphql } from "gatsby";
 
 import Header from "./header";
+import SEO from "./seo";
 import "./layout.css";
 
-const Layout = ({ children }) => {
+const Layout = ({ children, seoTitle, seoDescription, seoLang }) => {
   const {
     allWp: {
       nodes: [settings],
@@ -16,6 +17,8 @@ const Layout = ({ children }) => {
         nodes {
           generalSettings {
             title
+            description
+            language
           }
         }
       }
@@ -24,6 +27,7 @@ const Layout = ({ children }) => {
 
   return (
     <>
+      <SEO pageTitle={seoTitle} description={seoDescription} lang={seoLang} siteTitle={settings.generalSettings.title} />
       <Header siteTitle={settings.generalSettings.title || `Title`} />
       <div
         style={{

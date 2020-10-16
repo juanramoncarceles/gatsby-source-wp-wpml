@@ -7,6 +7,8 @@ import Layout from "../components/layout";
 const Features = ({
   data: {
     wpPage: {
+      title,
+      seo,
       featuresData
     }
   }
@@ -27,7 +29,7 @@ const Features = ({
   };
 
   return (
-  <Layout>
+  <Layout seoTitle={title} seoDescription={seo.metaDesc}>
     {renderFeatures(featuresData)}
   </Layout>
 );}
@@ -38,6 +40,10 @@ export const query = graphql`
       slug: { eq: "features" }
       locale: { id: { eq: $lang } }
     ) {
+      title
+      seo {
+        metaDesc
+      }
       featuresData {
         feature1 {
           title

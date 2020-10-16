@@ -1,10 +1,11 @@
 require('dotenv').config()
 
 module.exports = {
+  // siteMetadata is empty because those values are fetched from the WordPress settings.
   siteMetadata: {
-    title: `Tibidabo`,
-    description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
-    author: `Asuni`,
+    title: ``,
+    description: ``,
+    author: ``,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
@@ -24,9 +25,8 @@ module.exports = {
     {
       resolve: `gatsby-plugin-sharp`,
       options: {
-        // Available options and their defaults:
         base64Width: 20,
-        forceBase64Format: ``, // valid formats: png,jpg,webp
+        forceBase64Format: ``, // Valid formats: png, jpg, webp
         useMozJpeg: process.env.GATSBY_JPEG_ENCODER === `MOZJPEG`,
         stripMetadata: true,
         defaultQuality: 50,
@@ -61,9 +61,9 @@ module.exports = {
           Post: {
             limit:
               process.env.NODE_ENV === `development`
-                ? // Lets just pull 50 posts in development to make it easy on ourselves (aka. faster).
+                ? // Only 50 posts are pulled in development to make it faster.
                   50
-                : // and we don't actually need more than 5000 in production for this particular site
+                : // This creates a limit of 5000 in production but can be changed.
                   5000,
           },
         },

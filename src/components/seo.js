@@ -3,31 +3,31 @@ import PropTypes from "prop-types";
 import { Helmet } from "react-helmet";
 import { useStaticQuery, graphql } from "gatsby";
 
-const SEO = ({ description, lang, meta, title }) => {
-  const { site } = useStaticQuery(
-    graphql`
-      query {
-        site {
-          siteMetadata {
-            title
-            description
-            author
-          }
-        }
-      }
-    `
-  );
-
-  const metaDescription = description || site.siteMetadata.description;
-  const defaultTitle = site.siteMetadata?.title;
+const SEO = ({ description, lang, meta, pageTitle, siteTitle }) => {
+  // const { site } = useStaticQuery(
+  //   graphql`
+  //     query {
+  //       site {
+  //         siteMetadata {
+  //           title
+  //           description
+  //           author
+  //         }
+  //       }
+  //     }
+  //   `
+  // );
+  //console.log("SEO site data: ", site);
+  const metaDescription = description; // || site.siteMetadata.description;
+  //const defaultTitle = site.siteMetadata?.title;
 
   return (
     <Helmet
       htmlAttributes={{
         lang,
       }}
-      title={title}
-      titleTemplate={defaultTitle ? `%s | ${defaultTitle}` : null}
+      title={pageTitle}
+      titleTemplate={siteTitle ? `%s | ${siteTitle}` : null}
       meta={[
         {
           name: `description`,
@@ -35,7 +35,7 @@ const SEO = ({ description, lang, meta, title }) => {
         },
         {
           property: `og:title`,
-          content: title,
+          content: pageTitle,
         },
         {
           property: `og:description`,
@@ -51,11 +51,11 @@ const SEO = ({ description, lang, meta, title }) => {
         },
         {
           name: `twitter:creator`,
-          content: site.siteMetadata?.author || ``,
+          content: ``, // site.siteMetadata?.author || ``,
         },
         {
           name: `twitter:title`,
-          content: title,
+          content: pageTitle,
         },
         {
           name: `twitter:description`,
@@ -68,15 +68,16 @@ const SEO = ({ description, lang, meta, title }) => {
 
 SEO.defaultProps = {
   lang: `en`,
-  meta: [],
   description: ``,
+  meta: [],
 };
 
 SEO.propTypes = {
-  description: PropTypes.string,
+  siteTitle: PropTypes.string,
+  pageTitle: PropTypes.string.isRequired,
   lang: PropTypes.string,
+  description: PropTypes.string,
   meta: PropTypes.arrayOf(PropTypes.object),
-  title: PropTypes.string.isRequired,
 };
 
 export default SEO;
