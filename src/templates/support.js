@@ -7,9 +7,12 @@ const Support = ({
   data: {
     wpPage: { uri, content, title },
   },
+  pageContext: {
+    lang,
+  }
 }) => {
   return (
-    <Layout seoTitle={title}>
+    <Layout seoTitle={title} seoLang={lang}>
       <div dangerouslySetInnerHTML={{ __html: content }} />
       <Link to="/support/">English</Link>
       <Link to="/es/support/">Spanish</Link>
