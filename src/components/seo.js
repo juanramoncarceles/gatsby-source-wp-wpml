@@ -33,6 +33,7 @@ const SEO = ({ description, langCode, meta, pageTitle, siteTitle }) => {
       }}
       title={pageTitle}
       titleTemplate={siteTitle ? `%s | ${siteTitle}` : null}
+      defaultTitle={siteTitle}
       meta={[
         {
           name: `description`,
@@ -40,7 +41,7 @@ const SEO = ({ description, langCode, meta, pageTitle, siteTitle }) => {
         },
         {
           property: `og:title`,
-          content: pageTitle,
+          content: pageTitle || siteTitle,
         },
         {
           property: `og:description`,
@@ -60,7 +61,7 @@ const SEO = ({ description, langCode, meta, pageTitle, siteTitle }) => {
         },
         {
           name: `twitter:title`,
-          content: pageTitle,
+          content: pageTitle || siteTitle,
         },
         {
           name: `twitter:description`,
@@ -79,7 +80,7 @@ SEO.defaultProps = {
 
 SEO.propTypes = {
   siteTitle: PropTypes.string,
-  pageTitle: PropTypes.string.isRequired,
+  pageTitle: PropTypes.string,
   langCode: PropTypes.string,
   description: PropTypes.string,
   meta: PropTypes.arrayOf(PropTypes.object),
