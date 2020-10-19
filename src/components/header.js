@@ -39,12 +39,11 @@ const Header = ({ siteTitle, lang }) => {
 
 Header.propTypes = {
   siteTitle: PropTypes.string,
-  lang: PropTypes.string,
+  lang: PropTypes.string.isRequired,
 };
 
 Header.defaultProps = {
   siteTitle: ``,
-  lang: ``,
 };
 
 export default Header;
