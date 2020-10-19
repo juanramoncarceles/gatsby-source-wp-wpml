@@ -30,7 +30,7 @@ const Features = ({
     }
     return features;
   };
-  //console.log("Features context", pageContext);
+
   return (
   <Layout seoTitle={title} seoDescription={seo.metaDesc} seoLang={lang}>
     {renderFeatures(featuresData)}
