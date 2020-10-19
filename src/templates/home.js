@@ -7,10 +7,13 @@ import Image from "../components/image";
 const Home = ({
   data: {
     wpPage: { content }
+  },
+  pageContext: {
+    lang,
   }
 }) => {
   return (
-    <Layout>
+    <Layout seoLang={lang}>
       <div dangerouslySetInnerHTML={{ __html: content }} />
       <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
         <Image />
