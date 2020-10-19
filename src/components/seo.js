@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Helmet } from "react-helmet";
-import { useStaticQuery, graphql } from "gatsby";
+// import { useStaticQuery, graphql } from "gatsby";
 
 const SEO = ({ description, langCode, meta, pageTitle, siteTitle }) => {
   // This could be used as a fallback in case no props are provided.

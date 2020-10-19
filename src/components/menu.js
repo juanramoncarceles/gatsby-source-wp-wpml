@@ -5,7 +5,7 @@ import { Link, useStaticQuery, graphql } from "gatsby";
 const Menu = ({ lang }) => {
 
   // Since staticQuery cannot use variables in Gatsby (at least for now),
-  // I query all the languages and the render them based on a prop.
+  // I query all the languages and then render them based on a prop.
   const {
     allWordpressMenuLocation: {
       nodes,
