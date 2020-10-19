@@ -16,6 +16,26 @@ const languages = [
   },
 ];
 
+// Each pageData should contain the path to the template to create the page and the final page path.
+const pagesData = [
+  {
+    templatePath: "./src/templates/home.js",
+    pagePath: "",
+  },
+  {
+    templatePath: "./src/templates/features.js",
+    pagePath: "features",
+  },
+  {
+    templatePath: "./src/templates/buy.js",
+    pagePath: "buy",
+  },
+  {
+    templatePath: "./src/templates/support.js",
+    pagePath: "support",
+  },  
+];
+
 exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions;
 
@@ -51,52 +71,21 @@ exports.createPages = async ({ graphql, actions }) => {
     });
   });
 
-  const supportTemplate = path.resolve("./src/templates/support.js");
 
-  languages.forEach((lang) => {
-    createPage({
-      path: `${lang.path}support`,
-      component: slash(supportTemplate),
-      context: {
-        lang: lang.code,
-      },
+  // Loops all the pages data and languages to create all the final pages.
+  // TODO Should be improved to allow certain pages to not be in all the languages.
+  ((langs, pagesData) => {
+    pagesData.forEach(pageData => {
+      langs.forEach(lang => {
+        createPage({
+          path: `${lang.path}${pageData.pagePath}`,
+          component: slash(path.resolve(pageData.templatePath)),
+          context: {
+            lang: lang.code,
+          },
+        });
+      });
     });
-  });
-
-  const featuresTemplate = path.resolve("./src/templates/features.js");
-
-  languages.forEach((lang) => {
-    createPage({
-      path: `${lang.path}features`,
-      component: slash(featuresTemplate),
-      context: {
-        lang: lang.code,
-      },
-    });
-  });
-
-  const buyTemplate = path.resolve("./src/templates/buy.js");
-  
-  languages.forEach((lang) => {
-    createPage({
-      path: `${lang.path}buy`,
-      component: slash(buyTemplate),
-      context: {
-        lang: lang.code,
-      },
-    });
-  });
-
-  const homeTemplate = path.resolve("./src/templates/home.js");
-  
-  languages.forEach((lang) => {
-    createPage({
-      path: lang.path,
-      component: slash(homeTemplate),
-      context: {
-        lang: lang.code,
-      },
-    });
-  });
+  })(languages, pagesData);
 
 };
