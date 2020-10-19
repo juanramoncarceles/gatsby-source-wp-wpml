@@ -19,16 +19,17 @@ const Layout = ({ children, seoTitle, seoDescription, seoLang }) => {
           generalSettings {
             title
             description
-            language
           }
         }
       }
     }
   `);
 
+  const description = seoDescription ?? settings.generalSettings.description;
+
   return (
     <>
-      <SEO pageTitle={seoTitle} description={seoDescription} langCode={seoLang} siteTitle={settings.generalSettings.title} />
+      <SEO pageTitle={seoTitle} description={description} langCode={seoLang} siteTitle={settings.generalSettings.title} />
       <Header siteTitle={settings.generalSettings.title || `Title`} lang={seoLang} />
       <div
         style={{
