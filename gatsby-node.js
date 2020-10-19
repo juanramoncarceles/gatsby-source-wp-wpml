@@ -51,12 +51,12 @@ exports.createPages = async ({ graphql, actions }) => {
     });
   });
 
-  const aboutTemplate = path.resolve("./src/templates/about.js");
+  const supportTemplate = path.resolve("./src/templates/support.js");
 
   languages.forEach((lang) => {
     createPage({
-      path: `${lang.path}about`,
-      component: slash(aboutTemplate),
+      path: `${lang.path}support`,
+      component: slash(supportTemplate),
       context: {
         lang: lang.code,
       },
