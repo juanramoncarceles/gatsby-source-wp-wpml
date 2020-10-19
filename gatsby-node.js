@@ -87,4 +87,16 @@ exports.createPages = async ({ graphql, actions }) => {
     });
   });
 
+  const homeTemplate = path.resolve("./src/templates/home.js");
+  
+  languages.forEach((lang) => {
+    createPage({
+      path: lang.path,
+      component: slash(homeTemplate),
+      context: {
+        lang: lang.code,
+      },
+    });
+  });
+
 };
