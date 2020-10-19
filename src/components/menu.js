@@ -2,6 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Link, useStaticQuery, graphql } from "gatsby";
 
+import styles from "../styles/menu.module.css";
+
 const Menu = ({ lang }) => {
 
   // Since staticQuery cannot use variables in Gatsby (at least for now),
@@ -37,7 +39,7 @@ const Menu = ({ lang }) => {
   return (
     <div>
       {menuDataByLanguage(nodes, lang).map((item) => (
-        <Link to={item.url} key={item.ID}>
+        <Link to={item.url} key={item.ID} className={styles.item}>
           {item.title}
         </Link>
       ))}
