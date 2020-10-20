@@ -1,18 +1,17 @@
-  ☐ When the language of a page is changed the menu language and links should also change. Same for the header logo that points to the home. @high 
-  ☐ Create drop down with the available languages for the header. And the list for the footer.
+  ☐ The WP site tagline even if it has been translated with WPML it has not been exposed yet in GraphQL so I cannot get it.
 
-  ☐ The WP settings site description is not translated with WPML, how can I get that translation?
   ☐ Create page with a list of the latest posts and add it to the menu.
     Try to create this page first in WP.
-  ☐ The description that currently is obtained from the WP settings is only useful in the Home title, and maybe for the footer.
-  ☐ Use a CSS library and add the corresponding classes tot the WordPress content.
+
+  ☐ For the CSS create a Gatsby theme, which should have the basics used by the block editor plus anything else.
+    Example: https://github.com/zgordon/twentynineteen-gatsby-theme
+
+  ☐ Have a default template for all the pages without specific template.
+  
+  ☐ How to use the post / page featured image for example to show it in Google results.
+    
+Advanced:
   ☐ Add search tool in the menu.
-
-  ☐ If there is a button or anchor in the content that comes from WP how is it styled? And does the url works?
-
   ☐ Add to pages <head> some <meta> with the link to the same page in other langs: <link rel="alternate" hreflang="lang_code" href="page_url" />
-
-  ☐ In gatsby-node.js languages array, this data could be better if fetched from WP WPML.
-
-
   ☐ Now multilanguage site only works when the same page slug is maintained for all the pages. But in the blog it might be better to tranlate it as well. Could this work?
+  ☐ In gatsby-node.js languages array, this data could be better if fetched from WP WPML.
