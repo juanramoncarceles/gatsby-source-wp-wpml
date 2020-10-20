@@ -8,12 +8,19 @@ const Buy = ({
     wpPage: {
       title,
       seo,
-      purchaseData
+      content,
+      purchaseData,
+      translated,
     }
+  },
+  pageContext: {
+    lang,
   }
 }) => {
+
   return (
-    <Layout seoTitle={title} seoDescription={seo.metaDesc}>
+    <Layout seoTitle={title} seoLang={lang} seoDescription={seo.metaDesc} translatedData={translated}>
+      <div dangerouslySetInnerHTML={{ __html: content }} />
       <div><span>Professional</span><span>{purchaseData.commercialPrice}</span></div>
       <div><span>Student</span><span>{purchaseData.educationalPrice}</span></div>
       <div><span>School</span><span>{purchaseData.labPrice}</span></div>
@@ -31,10 +38,17 @@ export const query = graphql`
       seo {
         metaDesc
       }
+      content
       purchaseData {
         commercialPrice
         educationalPrice
         labPrice
+      }
+      translated {
+        uri
+        locale {
+          locale
+        }
       }
     }
   }
