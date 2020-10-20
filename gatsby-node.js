@@ -5,14 +5,17 @@ const languages = [
   {
     path: "/",
     code: "en_US",
+    name: "English",
   },
   {
     path: "/es/",
     code: "es_ES",
+    name: "Español",
   },
   {
     path: "/it/",
     code: "it_IT",
+    name: "Italiano",
   },
 ];
 
