@@ -2,9 +2,12 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "gatsby";
 
+import { languages } from "../intl/config";
 import Menu from "./menu";
 
 const Header = ({ siteTitle, lang }) => {
+
+  const currentLang = languages.find(language => language.code === lang);
 
   return (
     <header
@@ -22,7 +25,7 @@ const Header = ({ siteTitle, lang }) => {
       >
         <h1 style={{ margin: 0 }}>
           <Link
-            to="/"
+            to={currentLang.path}
             style={{
               color: `white`,
               textDecoration: `none`,

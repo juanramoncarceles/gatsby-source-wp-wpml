@@ -1,23 +1,6 @@
 const path = require(`path`);
 const { slash } = require(`gatsby-core-utils`);
-
-const languages = [
-  {
-    path: "/",
-    code: "en_US",
-    name: "English",
-  },
-  {
-    path: "/es/",
-    code: "es_ES",
-    name: "Español",
-  },
-  {
-    path: "/it/",
-    code: "it_IT",
-    name: "Italiano",
-  },
-];
+const { languages } = require('./src/intl/config');
 
 // Each pageData should contain the path to the template to create the page and the final page path.
 const pagesData = [
