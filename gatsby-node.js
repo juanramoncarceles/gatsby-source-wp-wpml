@@ -35,9 +35,12 @@ exports.createPages = async ({ graphql, actions }) => {
       allWpPost {
         nodes {
           id
+          locale {
+            locale
+          }
+          slug
+          # With uri you get something like: "/it/2020/10/21/fourth-post/"
           uri
-          title
-          content
         }
       }
     }
@@ -47,12 +50,11 @@ exports.createPages = async ({ graphql, actions }) => {
 
   allPosts.forEach((post) => {
     createPage({
-      path: `/blog${post.uri}`,
+      path: `${languages.find(l => l.code === post.locale.locale).path}blog/${post.slug}`,
       component: slash(postTemplate),
       context: {
         id: post.id,
-        title: post.title,
-        content: post.content,
+        lang: post.locale.locale,
       },
     });
   });
