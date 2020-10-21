@@ -38,7 +38,7 @@ const Layout = ({ children, seoTitle, seoDescription, seoLang, translatedData })
         maxWidth: 960,
         padding: `0 1.0875rem 1.45rem`,
       }}>{children}</main>
-      <Footer />
+      <Footer siteTitle={settings.generalSettings.title} />
     </>
   );
 };
