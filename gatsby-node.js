@@ -1,6 +1,7 @@
 const path = require(`path`);
 const { slash } = require(`gatsby-core-utils`);
 const { languages } = require('./src/intl/config');
+const { createPostUrl } = require('./src/utils');
 
 // Each pageData should contain the path to the template to create the page and the final page path.
 const pagesData = [
@@ -54,7 +55,7 @@ exports.createPages = async ({ graphql, actions }) => {
 
   allPosts.forEach((post) => {
     createPage({
-      path: `${languages.find(l => l.code === post.locale.locale).path}blog/${post.slug}`,
+      path: createPostUrl(languages, post.locale.locale, post.slug),
       component: slash(postTemplate),
       context: {
         id: post.id,

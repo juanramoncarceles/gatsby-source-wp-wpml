@@ -1,22 +1,17 @@
 import React from "react";
 import { graphql, Link } from "gatsby";
+
 import Layout from "../components/layout";
+import { languages } from "../intl/config";
+import { createPostUrl } from "../utils";
 
-export const query = graphql`
-  {
-    allWpPost {
-      nodes {
-        id
-        title
-        uri
-        excerpt
-      }
+const Blog = ({
+  data: {
+    allWpPost: {
+      nodes: posts
     }
-  }
-`;
-
-const Blog = ({ data }) => {
-  const posts = data.allWpPost.nodes;
+  },
+}) => {
 
   return (
     <Layout>
@@ -24,7 +19,7 @@ const Blog = ({ data }) => {
         <article key={post.id}>
           <h2>
             <Link
-              to={`/blog${post.uri}`}
+              to={createPostUrl(languages, post.locale.locale, post.slug)}
               dangerouslySetInnerHTML={{ __html: post.title }}
             />
           </h2>
@@ -34,5 +29,27 @@ const Blog = ({ data }) => {
     </Layout>
   );
 };
+
+export const query = graphql`
+  query allPostsQuery($lang: String!){
+    allWpPost(filter: {locale: {locale: {eq: $lang}}}) {
+      nodes {
+        id
+        title
+        slug
+        excerpt
+        locale {
+          locale
+        }
+        # Currently not working in translations.
+        featuredImage {
+          node {
+            uri
+          }
+        }
+      }
+    }
+  }
+`;
 
 export default Blog;
