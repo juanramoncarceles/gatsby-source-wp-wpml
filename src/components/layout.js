@@ -31,7 +31,7 @@ const Layout = ({ children, seoTitle, seoDescription, seoLang, translatedData })
   return (
     <>
       <SEO pageTitle={seoTitle} description={description} langCode={seoLang} siteTitle={settings.generalSettings.title} />
-      <Header siteTitle={settings.generalSettings.title || `Title`} lang={seoLang} />
+      <Header siteTitle={settings.generalSettings.title} lang={seoLang} />
       {(translatedData && translatedData.length > 0) ? <LanguageSelector translatedData={translatedData} /> : null}
       <main style={{
         margin: `0 auto`,
