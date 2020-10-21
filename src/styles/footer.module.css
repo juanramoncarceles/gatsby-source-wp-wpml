@@ -1,0 +1,10 @@
+.container {
+  margin-top: 2rem;
+  padding: 1rem;
+  background-color: #82c7b4;
+}
+
+.footer-copyright {
+  margin: 0;
+  font-weight: 600;
+}
