@@ -11,10 +11,13 @@ const Blog = ({
       nodes: posts
     }
   },
+  pageContext: {
+    lang,
+  },
 }) => {
 
   return (
-    <Layout>
+    <Layout seoLang={lang}>
       {posts.map((post) => (
         <article key={post.id}>
           <h2>
