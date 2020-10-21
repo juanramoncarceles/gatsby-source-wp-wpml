@@ -19,7 +19,11 @@ const pagesData = [
   {
     templatePath: "./src/templates/support.js",
     pagePath: "support",
-  },  
+  },
+  {
+    templatePath: "./src/templates/blog.js",
+    pagePath: "blog",
+  },
 ];
 
 exports.createPages = async ({ graphql, actions }) => {
