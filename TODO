@@ -1,17 +1,23 @@
+
+  ☐ Add featured image to some posts (and their translations) to show them in the list of posts (blog.js). Also try when there is no img with a placeholder.
+
   ☐ The WP site tagline even if it has been translated with WPML it has not been exposed yet in GraphQL so I cannot get it.
 
-  ☐ Create page with a list of the latest posts and add it to the menu.
-    Try to create this page first in WP.
+  ☐ Have a default template for all the pages without specific template.
 
   ☐ For the CSS create a Gatsby theme, which should have the basics used by the block editor plus anything else.
-    Example: https://github.com/zgordon/twentynineteen-gatsby-theme
+    Examples
+      https://github.com/zgordon/twentynineteen-gatsby-theme
+      https://github.com/henrikwirth/gatsby-starter-wordpress-twenty-twenty
 
-  ☐ Have a default template for all the pages without specific template.
-  
   ☐ How to use the post / page featured image for example to show it in Google results.
-    
+
 Advanced:
   ☐ Add search tool in the menu.
   ☐ Add to pages <head> some <meta> with the link to the same page in other langs: <link rel="alternate" hreflang="lang_code" href="page_url" />
   ☐ Now multilanguage site only works when the same page slug is maintained for all the pages. But in the blog it might be better to tranlate it as well. Could this work?
   ☐ In gatsby-node.js languages array, this data could be better if fetched from WP WPML.
+
+
+
+  ☐ The YouTube iframes should not be loaded unless the user has accepted certain cookies. So they should initially be created for example as links to YouTube an if the cookies have been accepted replace by an iframe.
