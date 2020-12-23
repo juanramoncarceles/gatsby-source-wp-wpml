@@ -1,3 +1,5 @@
-## Gatsby site with WordPress source
+## Static site sourcing from a multilingual WordPress
 
-Has support for WPML.
+Created to source from an existing WordPress site with WPML.
+
+Created with Gatsby.
